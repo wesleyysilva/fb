@@ -1672,9 +1672,9 @@ static VALUE fb_cursor_fields_ary(XSQLDA *sqlda, short downcase_names)
 		dtp = var->sqltype & ~1;
 
 		if (var->aliasname_length) { /* aliasname always present? */
-			name = rb_str_new(var->aliasname, var->aliasname_length);
+			name = rb_utf8_str_new(var->aliasname, var->aliasname_length);
 		} else {
-			name = rb_str_new(var->sqlname, var->sqlname_length);
+			name = rb_utf8_str_new(var->sqlname, var->sqlname_length);
 		}
 		if (downcase_names && no_lowercase(name)) {
 			rb_funcall(name, id_downcase_bang, 0);
